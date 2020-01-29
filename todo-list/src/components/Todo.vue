@@ -11,7 +11,7 @@
 
 
             <ul>
-                <li v-for="(t,index) in tasks" :key="index">
+                <li v-for="(t,index) in tasks" :key="index" @click="remove(index)" >
                     {{t}}
                 </li>
             </ul>
@@ -39,7 +39,15 @@
                 this.tasks.push(this.task)
                 this.task = ""
 
+            },
+
+            remove(index){
+
+                this.tasks.splice(index,1)
+
             }
+
+
         }
 
 
