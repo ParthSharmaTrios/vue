@@ -6,7 +6,7 @@
             <div class="col-4">
 
                 <b-list-group>
-                    <b-list-group-item v-for="(user,index) in users" :key="index" >
+                    <b-list-group-item v-for="(user,index) in users" :key="index" @click="fillInfo(user)">
                         {{user.name}}
                     </b-list-group-item>
                 </b-list-group>
@@ -14,10 +14,8 @@
             </div>
 
             <div class="col-8">
-                <UserDetails msg="This is my prop"></UserDetails>
-                <UserDetails msg="This is my prop2"></UserDetails>
-                <UserDetails msg="This is my prop3"></UserDetails>
-                <UserDetails msg="This is my prop4"></UserDetails>
+
+                <UserDetails :details="info"></UserDetails>
             </div>
         </div>
 
@@ -39,7 +37,7 @@
 
         data(){
            return {
-
+                info:'',
                 users:[]
            }
         },
@@ -49,8 +47,10 @@
         },
 
         methods:{
-            honey(id){
-                this.ids= id
+
+            fillInfo(user){
+                this.info = user
+
             },
 
             fetchUsers(){
