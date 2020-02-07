@@ -6,7 +6,7 @@
             <div class="col-4">
 
                 <b-list-group>
-                    <b-list-group-item v-for="(user,index) in users" :key="index" @click="fillInfo(user)">
+                    <b-list-group-item v-for="(user,index) in users" :key="index" @click="deleteUser(user.id)">
                         {{user.name}}
                     </b-list-group-item>
                 </b-list-group>
@@ -15,7 +15,7 @@
 
             <div class="col-8">
 
-<!--                <UserDetails :details="info"></UserDetails>-->
+                <!--                <UserDetails :details="info"></UserDetails>-->
             </div>
         </div>
 
@@ -26,8 +26,8 @@
 
 <script>
 
-  import axios from 'axios'
-  // import UserDetails from "./UserDetails";
+    import axios from 'axios'
+    // import UserDetails from "./UserDetails";
 
     export default{
 
@@ -36,22 +36,20 @@
         },
 
         data(){
-           return {
+            return {
                 info:'',
                 users:[]
-           }
+            }
         },
 
 
 
-       created() {
+        created() {
 
             this.fetchUsers()
         },
 
-        beforeDestroy() {
-            alert("Alert");
-        },
+
         methods:{
 
             fillInfo(user){
@@ -62,13 +60,23 @@
             fetchUsers(){
 
 
-                axios.get('http://api.test/users')
+                axios.get('http://vue.parthrai.ca/users')
                     .then(response => {
 
 
 
                         this.users = response.data
                     })
+            },
+
+            deleteUser(id){
+
+                axios.post('http://vue.parthrai.ca/user/delete/'+id).then(response=>{
+
+                    alert(response.data);
+
+                    this.fetchUsers()
+                })
             }
 
         }
