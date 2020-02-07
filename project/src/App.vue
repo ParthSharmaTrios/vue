@@ -9,7 +9,7 @@
               <ul class="nav navbar-nav">
                   <li class="active"><a href="/#/">Home</a></li>
                   <li><a href="/#/create">Create</a></li>
-                  <li><router-link :to="{name : 'list'}">List of Users</router-link> </li>
+                  <li><router-link to="/">List of Users</router-link> </li>
                   <li><router-link to="/create">Add new user</router-link> </li>
 
               </ul>
